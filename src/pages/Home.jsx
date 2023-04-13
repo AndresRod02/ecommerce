@@ -11,6 +11,7 @@ import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { Link } from 'react-router-dom';
+import { createProductsThunk } from '../store/slices/cart.slice';
 const Home = () => {
     const [categories, setCategories] = useState([])
     const [value, setValue] = useState('')
@@ -22,6 +23,14 @@ const Home = () => {
         .then(resp => setCategories(resp.data))
         .catch(error=> console.error(error))
     }, [])
+    const addProducts = (id) =>{
+        const data = {
+            quantity: 1,
+            productId: id
+        }
+        dispatch(createProductsThunk(data))
+        console.log(id)
+    }
     return (
         <div>
             <Container>
@@ -56,14 +65,12 @@ const Home = () => {
                         products.map(product =>(
                         <Col key={product.id}>
                             <Card>
-                                <Card.Img variant="top" src={product.images[0].url} style={{height: 200, objectFit: 'cover'}}/>
+                                <Card.Img variant="top" src={product.images[0].url} style={{height: 200, objectFit: 'contain'}}/>
                                 <Card.Body>
                                     <Card.Title>{product.title}</Card.Title>
                                     <Card.Text style={{color: 'green'}}>${product.price}</Card.Text>
-                                    <Card.Text>
-                                        {product.description}
-                                    </Card.Text>
-                                    <Button variant="primary" as={Link} to={`/product/:${product.id}`}>Ver detalle</Button>
+                                    <Button variant="primary" as={Link} to={`/product/${product.id}`}>Ver detalle</Button>
+                                    <Button onClick={()=>addProducts(product.id)}><box-icon name='cart' ></box-icon></Button>
                                 </Card.Body>
                             </Card>
                         </Col>

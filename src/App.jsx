@@ -11,6 +11,8 @@ import Login from './pages/Login'
 import Purchases from './pages/Purchases'
 import Loader from './components/Loader'
 import { useSelector } from 'react-redux'
+import ProtectedRoutes from './components/ProtectedRoutes'
+import 'boxicons'
 function App() {
   const isLoading = useSelector(state => state.isLoading)
   return (
@@ -22,10 +24,12 @@ function App() {
       }
       <NavBar/>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/product/:id" element={<ProductDetail/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route element={<ProtectedRoutes/>}>
         <Route path="/purchases" element={<Purchases/>} />
+        </Route>
+        <Route path="/" element={<Home/>} />
+        <Route path={"/product/:id"} element={<ProductDetail/>} />
+        <Route path="/login" element={<Login/>} />
       </Routes>
     </div>
     </HashRouter>
