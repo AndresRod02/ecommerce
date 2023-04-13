@@ -6,6 +6,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import Button from 'react-bootstrap/Button';
 import { createProductsThunk } from '../store/slices/cart.slice';
 import { useDispatch } from 'react-redux';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 const ProductDetail = () => {
     const {id} = useParams()
     const [detail, setDetail] = useState({})
@@ -25,39 +28,47 @@ const ProductDetail = () => {
     }
     return (
         <div>
-            <Carousel>
-                <Carousel.Item>
-                    <img style={{objectFit: 'contain', maxHeight: '500px'}}
-                    className="d-block w-100 h-100"
-                    src={detail.images?.[0].url}
-                    alt="First slide"
-                    />
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img style={{objectFit: 'contain', maxHeight: '500px'}}
-                    className="d-block w-100 h-100"
-                    src={detail.images?.[1].url}
-                    alt="Second slide"
-                    />
+            <Container>
+                <Row>
+                    <Col>
+                        <Carousel style={{height: '500px'}}>
+                            <Carousel.Item>
+                                <img style={{objectFit: 'contain', height: '500px', width: '300px' }}
+                                className="d-block w-100 h-100"
+                                src={detail.images?.[0].url}
+                                alt="First slide"
+                                />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img style={{objectFit: 'contain', maxHeight: '500px'}}
+                                className="d-block w-100 h-100"
+                                src={detail.images?.[1].url}
+                                alt="Second slide"
+                                />
 
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img style={{objectFit: 'contain', maxHeight: '500px'}}
-                    className="d-block w-100 h-100"
-                    src={detail.images?.[2].url}
-                    alt="Third slide"
-                    />
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <img style={{objectFit: 'contain', maxHeight: '500px'}}
+                                className="d-block w-100 h-100"
+                                src={detail.images?.[2].url}
+                                alt="Third slide"
+                                />
 
-                </Carousel.Item>
-            </Carousel>
-            <h1>{detail.title}</h1>
-            <p>{detail.description}</p>
-            <h6>Price</h6>
-            <h3>{detail.price}</h3>
-            <Button onClick={()=>counter === 1? counter : setCounter(counter-1)}>-</Button>
-            {counter}
-            <Button onClick={()=>setCounter(counter+1)}>+</Button>
-            <Button onClick={addProducts}>Añadir al carrito</Button>
+                            </Carousel.Item>
+                        </Carousel>
+                    </Col>
+                    <Col>
+                        <h1>{detail.title}</h1>
+                        <p>{detail.description}</p>
+                        <h6>Price</h6>
+                        <h3>{detail.price}</h3>
+                        <Button onClick={()=>counter === 1? counter : setCounter(counter-1)}>-</Button>
+                        {counter}
+                        <Button onClick={()=>setCounter(counter+1)}>+</Button>
+                        <Button onClick={addProducts}>Añadir al carrito</Button>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 };

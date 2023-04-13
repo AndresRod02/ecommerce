@@ -5,6 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect} from 'react';
 import { getCartThunk, cartCheckoutThunk, deleteProductsThunk, updateProductsThunk } from '../store/slices/cart.slice';
 import Counter from './Counter';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Card from 'react-bootstrap/Card';
 const Cart = ({show, handleClose}) => {
     const dispatch = useDispatch()
     const products =  useSelector(state => state.cart)
@@ -34,17 +39,23 @@ const Cart = ({show, handleClose}) => {
                 <Offcanvas.Title>Carrito de compras</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                <ul>{
-                    products.map(product=>(
-                        <li key={product.id}>
-                            <h5>{product.product.title}</h5>
-                            <img src={product.product.images?.[0].url} alt="" style={{width: 230}}/>
-                            <Button onClick={()=>deleteProduct(product.id)}>Eliminar</Button>
-                            <Counter initial={product.quantity} onChange={(count)=>handleCounterChange(count, product.id)}/>
-                        </li>
-                    ))
-                    }
-                </ul>
+                <Container>
+                    <Col style={{listStyleType: 'none'}}>
+                        {
+                            products.map(product=>(
+                                <Card style={{ width: '18rem', marginTop:'10px'}}>
+                                <li key={product.id} style={{border: '#d2d2d2 0.5px solid', width: '100%'}}>
+                                    <Card.Title>{product.product.title}</Card.Title>
+                                    <Card.Img variant="top" src={product.product.images?.[0].url} style={{height: 190, width: 160, objectFit: 'contain', borderRadius: '5px'}}/>
+                                    <Button onClick={()=>deleteProduct(product.id)} style={{marginBottom: '40%', marginLeft: '20%'}}><box-icon name='trash'></box-icon></Button>
+                                    <Counter initial={product.quantity} onChange={(count)=>handleCounterChange(count, product.id)}/>
+                                </li>
+                                </Card>
+                            ))
+                        }
+                        
+                    </Col>
+                </Container>
                 <Button onClick={()=>dispatch(cartCheckoutThunk())}>Checkout</Button>
                 </Offcanvas.Body>
             </Offcanvas>

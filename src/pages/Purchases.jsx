@@ -3,6 +3,9 @@ import axios from 'axios';
 import getConfig from '../utils/getConfig';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 const Purchases = () => {
     const [products, setProducts] = useState([])
     useEffect(()=>{
@@ -12,27 +15,31 @@ const Purchases = () => {
     }, [])
     return (
         <div>
-            <ul>
+            <Container>
+                <Row xs={1} md={2} lg={3}>
             {
-              products.map(product =>(
-                <li key={product.id}>
-                    <CardGroup className='w-50'>
-                        <Card>
-                            <Card.Img variant="top" src={product.product.images?.[0].url} />
+                products.map(product =>(
+                    <Col>
+                    <li key={product.id} style={{listStyleType: 'none'}}>
+                    <CardGroup style={{margin: '0 auto'}}>
+                        <Card style={{margin: '0 auto'}}>
+                            <Card.Img variant="top" src={product.product.images?.[0].url} style={{height: 200, objectFit: 'contain', border: '#d2d2d2 0.5px solid', borderRadius: '5px'}}/>
                             <Card.Body>
                             <Card.Title>{product.product.title}</Card.Title>
                             <Card.Text>
-                                {product.product.price}
+                                ${product.product.price}
                             </Card.Text>
                             </Card.Body>
                         </Card>
                     </CardGroup>
-                </li>
+                    </li>
+                    </Col>
               ))  
             }
-            </ul>
+                </Row>
+            </Container>
         </div>
-    );
-};
+        );
+    };
 
 export default Purchases;

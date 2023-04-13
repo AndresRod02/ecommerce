@@ -65,12 +65,12 @@ const Home = () => {
                         products.map(product =>(
                         <Col key={product.id}>
                             <Card>
-                                <Card.Img variant="top" src={product.images[0].url} style={{height: 200, objectFit: 'contain'}}/>
+                                <Card.Img variant="top" src={product.images[0].url} style={{height: 200, objectFit: 'contain', border: '#d2d2d2 0.5px solid', borderRadius: '5px'}}/>
                                 <Card.Body>
                                     <Card.Title>{product.title}</Card.Title>
                                     <Card.Text style={{color: 'green'}}>${product.price}</Card.Text>
                                     <Button variant="primary" as={Link} to={`/product/${product.id}`}>Ver detalle</Button>
-                                    <Button onClick={()=>addProducts(product.id)}><box-icon name='cart' ></box-icon></Button>
+                                    <Button onClick={()=>addProducts(product.id)} style={{marginLeft: '40%'}}><box-icon name='cart' color='white'></box-icon></Button>
                                 </Card.Body>
                             </Card>
                         </Col>
