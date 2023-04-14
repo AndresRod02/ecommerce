@@ -66,3 +66,9 @@ body{
   background-color: #999;
   border: 1px solid #555;
 }
+.counter > button{
+  background-color: #4582ec;
+  border-radius: 10px;
+  width: 2rem;
+  height: 2rem;
+}

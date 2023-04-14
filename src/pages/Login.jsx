@@ -27,6 +27,7 @@ const Login = () => {
         <div>
             <Form style={{maxWidth: 500, margin: '1rem auto', border: '1px solid black', padding: '1rem'}}
             onSubmit={handleSubmit(submit)}>
+                <Form.Label style={{backgroundColor: 'wheat', marginLeft: '10rem'}}>Datos de prueba: <br /> john@gmail.com <br />john1234 </Form.Label>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="john@gmail.com" {...register("email")}/>

@@ -15,6 +15,7 @@ const Purchases = () => {
     }, [])
     return (
         <div>
+            <h1 style={{marginLeft: '7.5rem'}}>Historial de compras</h1>
             <Container>
                 <Row xs={1} md={2} lg={3}>
             {

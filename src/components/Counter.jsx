@@ -29,10 +29,10 @@ const [count, dispatch] = useReducer(counterReducer, initial);
   
   
     return (
-      <div style={{paddingLeft: '10px'}}>
-        <Button onClick={handleDecrement}>-</Button>
+      <div style={{paddingLeft: '10px'}} className='counter'>
+        <button onClick={handleDecrement}>-</button>
         <span style={{marginLeft: '10px'}}>{count}</span>
-        <Button onClick={handleIncrement} style={{marginLeft: '10px'}}>+</Button>
+        <button onClick={handleIncrement} style={{marginLeft: '10px'}}>+</button>
       </div>
     );
   };

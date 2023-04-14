@@ -44,10 +44,10 @@ const Cart = ({show, handleClose}) => {
                         {
                             products.map(product=>(
                                 <Card style={{ width: '18rem', marginTop:'10px'}}>
-                                <li key={product.id} style={{border: '#d2d2d2 0.5px solid', width: '100%'}}>
-                                    <Card.Title>{product.product.title}</Card.Title>
-                                    <Card.Img variant="top" src={product.product.images?.[0].url} style={{height: 190, width: 160, objectFit: 'contain', borderRadius: '5px'}}/>
-                                    <Button onClick={()=>deleteProduct(product.id)} style={{marginBottom: '40%', marginLeft: '20%'}}><box-icon name='trash'></box-icon></Button>
+                                <li key={product.id} style={{ width: '100%'}}>
+                                    <Card.Title style={{marginLeft: '1rem'}}>{product.product.title}</Card.Title>
+                                    <Card.Img variant="top" src={product.product.images?.[0].url} style={{height: 100, width: 100, objectFit: 'contain', borderRadius: '5px', marginLeft: '1rem'}}/>
+                                    <button onClick={()=>deleteProduct(product.id)} style={{marginBottom: '1rem', marginLeft: '5.5rem', backgroundColor: '#4582ec', borderRadius: '10px'}}><box-icon name='trash'></box-icon></button>
                                     <Counter initial={product.quantity} onChange={(count)=>handleCounterChange(count, product.id)}/>
                                 </li>
                                 </Card>
@@ -56,7 +56,7 @@ const Cart = ({show, handleClose}) => {
                         
                     </Col>
                 </Container>
-                <Button onClick={()=>dispatch(cartCheckoutThunk())}>Checkout</Button>
+                <Button onClick={()=>dispatch(cartCheckoutThunk())} style={{marginLeft: '13rem'}}>Comprar</Button>
                 </Offcanvas.Body>
             </Offcanvas>
         </div>
